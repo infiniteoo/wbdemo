@@ -1,4 +1,3 @@
-
 import { Component, OnInit } from '@angular/core';
 import { ItemService } from '../item.service';
 
@@ -19,6 +18,7 @@ export class ItemListComponent implements OnInit {
   fetchItems(): void {
     this.itemService.getItems().subscribe(
       (data) => {
+        console.log('Data: ', data);
         this.items = data;
       },
       (error) => {
