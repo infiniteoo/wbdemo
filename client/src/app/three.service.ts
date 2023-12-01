@@ -54,7 +54,7 @@ export class ThreeService {
     this.gltfLoader.load('../assets/models/wb_shield.glb', (gltf) => {
       console.log(gltf);
       this.logo = gltf.scene;
-      this.logo.scale.set(0.5, 0.5, 0.5);
+      this.logo.scale.set(0.7, 0.7, 0.7);
       this.scene.add(this.logo);
     });
 
