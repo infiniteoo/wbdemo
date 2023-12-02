@@ -7,7 +7,7 @@ import { Router } from '@angular/router';
 
   template: `
     <button
-      class="bg-black text-white px-4 py-2 text-4xl rounded hover:font-bold"
+      class="bg-black text-white px-4 py-2 text-4xl rounded hover:font-bold hover:tracking-[6px]"
       (click)="navigateToDashboard()"
     >
       enter
