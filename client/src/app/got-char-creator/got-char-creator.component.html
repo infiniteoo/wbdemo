@@ -31,7 +31,9 @@
       style="font-family: 'GameOfThrones', sans-serif"
     >
       <div class="mb-2">
-        <label for="name" class="text-2xl">Name: </label>
+        <label for="name" class="text-2xl font-bold text-blue-900"
+          >Name:
+        </label>
         <input
           type="text"
           id="name"
@@ -40,18 +42,21 @@
         />
       </div>
 
-      <div class="w-fit mt-8">
-        <label for="house" class="text-2xl">Select House:</label>
-
+      <div class="w-fit mt-4">
         <div class="">
           <app-house-picker
             (houseSelected)="onHouseSelected($event)"
           ></app-house-picker>
         </div>
+        <label for="house" class="text-2xl font-bold text-blue-900"
+          >Select House</label
+        >
       </div>
 
       <div class="mt-5">
-        <label for="characterClass" class="text-2xl">Class: </label>
+        <label for="characterClass" class="text-2xl text-blue-900 font-bold"
+          >Class:
+        </label>
 
         <select
           id="characterClass"
@@ -70,7 +75,7 @@
       <button
         type="button"
         (click)="generateRandomStats()"
-        class="text-gray-900 cursor-pointer px-4 rounded-md text-2xl text-shadow items-center justify-center text-center w-full"
+        class="cursor-pointer px-4 rounded-md text-2xl text-shadow items-center justify-center text-center w-full font-bold text-blue-900"
       >
         Roll Stats
         <span class="text-7xl">
@@ -91,7 +96,7 @@
         class="flex flex-row justify-center items-center text-center w-100 mt-4"
       >
         <div
-          class="space-x-4 justify-center max-w-fit items-center text-center"
+          class="space-x-4 justify-center max-w-fit items-center text-center mt-3.5"
         >
           <button type="submit" class="custom-button w-full px-8">
             Submit
@@ -101,7 +106,7 @@
     </form>
 
     <!-- Display Character Stats -->
-    <div *ngIf="character" class="mb-4 bg-gray-900">
+    <div *ngIf="character" class="mb-4">
       <h3 class="text-3xl font-semibold">Generated Character Stats</h3>
       <div class="grid grid-cols-2 gap-4 mt-3 flex-between">
         <div class="text-2xl items-center justify-center">

@@ -28,12 +28,14 @@
   </div>
 </div>
 <div class="flex flex-col flex-1 parchment-background h-fit rounded-3xl">
-  <img
-    *ngIf="!isLoading && imageUrl"
-    [src]="imageUrl"
-    alt="Character Image"
-    class="rounded-3xl"
-  />
+  <div class="">
+    <img
+      *ngIf="!isLoading && imageUrl"
+      [src]="imageUrl"
+      alt="Character Image"
+      class="rounded-3xl"
+    />
+  </div>
 
   <div
     *ngIf="!isLoading && characterDetails"

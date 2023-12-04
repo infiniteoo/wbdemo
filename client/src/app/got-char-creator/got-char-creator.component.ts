@@ -34,7 +34,6 @@ export class GotCharCreatorComponent implements OnInit {
     this.character.house = house;
     console.log('Selected house in parent component:', house);
     console.log('this.character.hosue', this.character.house);
-    // Perform additional actions based on the selected house.
   }
 
   character!: GameOfThronesCharacter;
@@ -72,7 +71,6 @@ export class GotCharCreatorComponent implements OnInit {
       .post('http://localhost:5000/create-char', this.character)
       .subscribe((response) => {
         console.log('Server response:', response);
-        // You can handle the response from the server here
       });
   }
 }
