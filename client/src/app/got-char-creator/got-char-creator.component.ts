@@ -7,6 +7,8 @@ import { CommonModule } from '@angular/common';
 import { ReactiveFormsModule } from '@angular/forms';
 import { HousePickerComponent } from '../house-picker/house-picker.component';
 
+import { HttpClient } from '@angular/common/http';
+
 @Component({
   selector: 'app-got-char-creator',
   imports: [CommonModule, ReactiveFormsModule, HousePickerComponent],
@@ -16,8 +18,8 @@ import { HousePickerComponent } from '../house-picker/house-picker.component';
 })
 export class GotCharCreatorComponent implements OnInit {
   selectedHouse: string = '';
-
-  constructor(private fb: FormBuilder) {
+  isComponentVisible = false;
+  constructor(private fb: FormBuilder, private http: HttpClient) {
     this.character = {
       name: '',
       house: '',
@@ -34,10 +36,9 @@ export class GotCharCreatorComponent implements OnInit {
     console.log('this.character.hosue', this.character.house);
     // Perform additional actions based on the selected house.
   }
+
   character!: GameOfThronesCharacter;
-  ngOnInit(): void {
-    // Initialization logic can go here if needed
-  }
+  ngOnInit(): void {}
 
   characterForm = this.fb.group({
     name: ['', Validators.required],
@@ -46,7 +47,7 @@ export class GotCharCreatorComponent implements OnInit {
     standalone: true,
   });
 
-  classes: string[] = ['Warrior', 'Wizard', 'Rogue'];
+  classes: string[] = ['Warrior', 'Wizard', 'Rogue', 'Priest', 'Bard'];
 
   generateRandomStats() {
     this.character = {
@@ -61,8 +62,12 @@ export class GotCharCreatorComponent implements OnInit {
 
   onSubmit(): void {
     console.log('Form submitted with character data:', this.character);
-    console.log('Submit button clicked');
-    console.log('Form value:', this.characterForm.value);
-    console.log('Character data:', this.character);
+
+    this.http
+      .post('http://localhost:5000/create-char', this.character)
+      .subscribe((response) => {
+        console.log('Server response:', response);
+        // You can handle the response from the server here
+      });
   }
 }
