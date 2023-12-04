@@ -21,11 +21,29 @@
         autoplay
         playsinline
       ></video>
-
       <div
-        class="text-slate-900 text-xl bg-slate-200 border-xl shadow-2xl shadow-black rounded-3xl"
+        class="flex flex-row justify-center"
+        style="justify-content: center; display: flex"
       >
-        <app-got-char-creator></app-got-char-creator>
+        <div
+          class="text-slate-900 text-xl bg-slate-200 border-xl shadow-2xl shadow-black rounded-3xl"
+        >
+          <app-got-char-creator></app-got-char-creator>
+        </div>
+        <div
+          class="text-slate-900 text-xl bg-slate-200 border-xl shadow-2xl shadow-black rounded-3xl"
+          style="margin-left: 20px"
+        >
+          <app-character-list
+            (characterSelected)="onCharacterSelected($event)"
+          ></app-character-list>
+        </div>
+        <div
+          class="text-slate-900 text-xl bg-slate-200 border-xl shadow-2xl shadow-black rounded-3xl"
+          style="margin-left: 20px; width: 600px"
+        >
+          <app-image-viewer [imageUrl]="selectedImageUrl"></app-image-viewer>
+        </div>
       </div>
     </section>
   </body>
