@@ -1,0 +1,9 @@
+<div class="house-container">
+  <div
+    *ngFor="let house of gotImages"
+    class="house"
+    (click)="selectHouse(house)"
+  >
+    <img [src]="house" alt="House Image" />
+  </div>
+</div>
