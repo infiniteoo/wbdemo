@@ -1,22 +1,48 @@
 <!-- image-viewer.component.html -->
+<div
+  *ngIf="!imageUrl && !isLoading"
+  class="parchment-background h-full rounded-3xl text-shadow p-4"
+  style="font-family: 'GameOfThrones', sans-serif"
+>
+  <h2
+    class="text-4xl font-semibold mb-4 text-center"
+    style="font-family: 'GameOfThrones', sans-serif"
+  >
+    Avatar
+  </h2>
+</div>
 
-<div *ngIf="isLoading" class="loading-container">
+<div
+  *ngIf="isLoading"
+  class="loading-container min-h-full parchment-background rounded-3xl z-50 text-slate-900 text-2xl text-shadow"
+  style="font-family: 'GameOfThrones', sans-serif"
+>
   <div class="loading-spinner"></div>
-  <div class="flex flex-col items-center justify-center text=center">
-    <div class="text-4xl text-blue-400 mt-20">Generating Image...</div>
-    <div class="font-2xl text-gray-800 mt-10 text-center">
-      Hang tight! DALL-E powered by Open AI is processing now.
+  <div class="flex flex-col items-center justify-center text-center">
+    <div
+      class="text-3xl mt-20 text-center font-bold text-blue-800"
+      style="color: darkblue"
+    >
+      Generating Image...
     </div>
   </div>
 </div>
-<div class="flex flex-col flex-1">
-  <img *ngIf="!isLoading && imageUrl" [src]="imageUrl" alt="Character Image" />
+<div class="flex flex-col flex-1 parchment-background h-fit rounded-3xl">
+  <img
+    *ngIf="!isLoading && imageUrl"
+    [src]="imageUrl"
+    alt="Character Image"
+    class="rounded-3xl"
+  />
 
-  <div *ngIf="!isLoading && characterDetails" class="character-details">
+  <div
+    *ngIf="!isLoading && characterDetails"
+    class="character-details text-shadow h-fit flex-1 mb-2"
+  >
     <p class="text-4xl text-center items-center justify-center">
       {{ characterDetails.name }}'s Stats
     </p>
-    <div class="grid grid-cols-2 gap-4 mt-3">
+    <div class="grid grid-cols-2 gap-4 mt-3 min-h-fit">
       <div class="text-xl text-center items-center justify-center">
         <p>Name: {{ characterDetails.name }}</p>
         <p>House: {{ characterDetails.house }}</p>

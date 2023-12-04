@@ -6,26 +6,42 @@
     crossorigin="anonymous"
   />
 </head>
-<div class="text-slate-900 text-2xl rounded-3xl z-50">
-  <div class="mt-8 p-4 rounded-md">
-    <h2 class="text-4xl font-semibold mb-4">
-      Game of Thrones Character Creator
+<div
+  class="text-slate-900 text-2xl rounded-3xl z-50 parchment-background text-shadow justify-center items-center text-center"
+>
+  <div class="p-4 rounded-md">
+    <h2
+      class="text-4xl font-semibold mb-4 text-center"
+      style="font-family: 'GameOfThrones', sans-serif"
+    >
+      Game of Thrones
     </h2>
+    <h1
+      class="text-xl font-semibold mb-4 text-center"
+      style="font-family: 'GameOfThrones', sans-serif"
+    >
+      Character Creator
+    </h1>
 
     <!-- Character Creator Form -->
-    <form [formGroup]="characterForm" (ngSubmit)="onSubmit()" class="mb-4">
+    <form
+      [formGroup]="characterForm"
+      (ngSubmit)="onSubmit()"
+      class="mb-4 mt-10"
+      style="font-family: 'GameOfThrones', sans-serif"
+    >
       <div class="mb-4">
-        <label for="name" class="text-3xl">Name: </label>
+        <label for="name" class="text-2xl">Name: </label>
         <input
           type="text"
           id="name"
           formControlName="name"
-          class="form-input text-3xl"
+          class="form-input text-2xl"
         />
       </div>
 
-      <div class="mb-4 w-fit">
-        <label for="house" class="text-3xl">House:</label>
+      <div class="mb-4 w-fit mt-10">
+        <label for="house" class="text-2xl">House:</label>
 
         <div class="">
           <app-house-picker
@@ -34,13 +50,13 @@
         </div>
       </div>
 
-      <div class="mb-4">
-        <label for="characterClass" class="text-3xl">Class: </label>
+      <div class="mb-4 mt-10">
+        <label for="characterClass" class="text-2xl">Class: </label>
 
         <select
           id="characterClass"
           formControlName="characterClass"
-          class="form-select text-3xl"
+          class="form-select text-2xl"
         >
           <option
             *ngFor="let characterClass of classes"
@@ -54,7 +70,7 @@
       <button
         type="button"
         (click)="generateRandomStats()"
-        class="text-gray-900 cursor-pointer px-4 py-2 rounded-md text-3xl"
+        class="text-gray-900 cursor-pointer px-4 py-2 rounded-md text-2xl text-shadow items-center justify-center text-center w-full"
       >
         Roll Stats
         <span class="text-7xl">
@@ -77,14 +93,20 @@
     </form>
 
     <!-- Display Character Stats -->
-    <div *ngIf="character" class="mb-4">
-      <h3 class="text-xl font-semibold">Generated Character Stats</h3>
-      <p><strong>Name:</strong> {{ character.name }}</p>
-      <p><strong>House:</strong> {{ character.house }}</p>
-      <p><strong>Class:</strong> {{ character.characterClass }}</p>
-      <p><strong>Strength:</strong> {{ character.strength }}</p>
-      <p><strong>Intelligence:</strong> {{ character.intelligence }}</p>
-      <p><strong>Charisma:</strong> {{ character.charisma }}</p>
+    <div *ngIf="character" class="mb-4 bg-gray-900">
+      <h3 class="text-3xl font-semibold">Generated Character Stats</h3>
+      <div class="grid grid-cols-2 gap-4 mt-3 flex-between">
+        <div class="text-2xl items-center justify-center">
+          <p>Name: {{ character.name }}</p>
+          <p>House: {{ character.house }}</p>
+          <p>Class: {{ character.characterClass }}</p>
+        </div>
+        <div class="text-2xl text-center items-center justify-center">
+          <p>Intelligence: {{ character.intelligence }}</p>
+          <p>Charisma: {{ character.charisma }}</p>
+          <p>Strength: {{ character.strength }}</p>
+        </div>
+      </div>
     </div>
   </div>
 </div>

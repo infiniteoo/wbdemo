@@ -33,3 +33,18 @@ img {
         transform: rotate(360deg);
     }
 }
+
+.character-details {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+
+    height: 100%;
+
+}
+
+.grid {
+    min-height: 100%;
+    flex: 1;
+
+}

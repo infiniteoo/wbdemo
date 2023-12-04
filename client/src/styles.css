@@ -8,3 +8,25 @@ body {
     font-family: 'Pixelify Sans', sans-serif;
     font-family: 'Space Grotesk', sans-serif;
 }
+
+@font-face {
+    font-family: 'GameOfThrones';
+    src: url('./assets/fonts/Game\ of\ Thrones.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+}
+
+.parchment-background {
+    background-image: url('./assets/images/parchment.jpg');
+    background-size: cover;
+
+    background-repeat: no-repeat;
+    background-position: center;
+}
+
+.text-shadow {
+    color: #3e3e3e;
+
+    text-shadow: 2px 2px 3px #ffffff;
+
+}

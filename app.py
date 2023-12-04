@@ -65,6 +65,17 @@ def get_image():
     
     image_url = response.data[0].url
     print(image_url)
+
+    # save image url to dynamodb
+    table.update_item(
+        Key={
+            'name': data['name']
+        },
+        UpdateExpression='SET image_url = :val1',
+        ExpressionAttributeValues={
+            ':val1': image_url
+        }
+    )
     return jsonify({"url": image_url})
    
 
