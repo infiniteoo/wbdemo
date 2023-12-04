@@ -48,3 +48,17 @@ img {
     flex: 1;
 
 }
+
+.delete-button,
+.edit-button {
+    margin: 0 5px;
+    padding: 5px;
+
+
+    cursor: pointer;
+}
+
+.delete-button:hover,
+.edit-button:hover {
+    color: #f3f3f3;
+}

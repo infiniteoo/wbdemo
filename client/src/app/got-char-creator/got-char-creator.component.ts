@@ -1,5 +1,5 @@
 // game-of-thrones-character-creator.component.ts
-import { Component, Input } from '@angular/core';
+import { Component, Input, Output, EventEmitter } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { GameOfThronesCharacter } from '../character.model';
 import { OnInit } from '@angular/core';
@@ -17,6 +17,7 @@ import { HttpClient } from '@angular/common/http';
   standalone: true,
 })
 export class GotCharCreatorComponent implements OnInit {
+  @Output() characterCreated = new EventEmitter<void>();
   selectedHouse: string = '';
   isComponentVisible = false;
   @Input() hideUi: boolean = false;
@@ -73,6 +74,7 @@ export class GotCharCreatorComponent implements OnInit {
       .post('http://localhost:5000/create-char', this.character)
       .subscribe((response) => {
         console.log('Server response:', response);
+        this.characterCreated.emit();
       });
   }
 }

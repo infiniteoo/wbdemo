@@ -34,7 +34,7 @@ export interface CharacterDetails {
   imports: [CommonModule],
 })
 export class CharacterListComponent implements OnInit {
-  characters: any[] = [];
+  characters: Character[] = [];
   selectedImageUrl?: string;
   isLoading: boolean = false;
 
@@ -51,7 +51,7 @@ export class CharacterListComponent implements OnInit {
   loadCharacters(): void {
     this.http.get('http://localhost:5000/get-chars').subscribe((response) => {
       console.log('Server response:', response);
-      this.characters = response as any[];
+      this.characters = response as Character[];
     });
   }
 
