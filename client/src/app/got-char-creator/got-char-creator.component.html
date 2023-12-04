@@ -7,7 +7,7 @@
   />
 </head>
 <div
-  class="text-slate-900 text-2xl rounded-3xl z-50 parchment-background text-shadow justify-center items-center text-center"
+  class="text-slate-900 text-2xl rounded-3xl z-50 parchment-background text-shadow justify-center items-center text-center h-full w-full"
 >
   <div class="p-4 rounded-md">
     <h2
@@ -17,7 +17,7 @@
       Game of Thrones
     </h2>
     <h1
-      class="text-xl font-semibold mb-4 text-center"
+      class="text-xl font-semibold mb-3 text-center"
       style="font-family: 'GameOfThrones', sans-serif"
     >
       Character Creator
@@ -30,7 +30,7 @@
       class="mb-4 mt-10"
       style="font-family: 'GameOfThrones', sans-serif"
     >
-      <div class="mb-4">
+      <div class="mb-2">
         <label for="name" class="text-2xl">Name: </label>
         <input
           type="text"
@@ -40,8 +40,8 @@
         />
       </div>
 
-      <div class="mb-4 w-fit mt-10">
-        <label for="house" class="text-2xl">House:</label>
+      <div class="w-fit mt-8">
+        <label for="house" class="text-2xl">Select House:</label>
 
         <div class="">
           <app-house-picker
@@ -50,7 +50,7 @@
         </div>
       </div>
 
-      <div class="mb-4 mt-10">
+      <div class="mt-5">
         <label for="characterClass" class="text-2xl">Class: </label>
 
         <select
@@ -70,7 +70,7 @@
       <button
         type="button"
         (click)="generateRandomStats()"
-        class="text-gray-900 cursor-pointer px-4 py-2 rounded-md text-2xl text-shadow items-center justify-center text-center w-full"
+        class="text-gray-900 cursor-pointer px-4 rounded-md text-2xl text-shadow items-center justify-center text-center w-full"
       >
         Roll Stats
         <span class="text-7xl">
@@ -87,8 +87,16 @@
           </ng-template>
         </span>
       </button>
-      <div class="flex space-x-4 justify-center max-w-fit">
-        <button type="submit" class="custom-button w-full">Submit</button>
+      <div
+        class="flex flex-row justify-center items-center text-center w-100 mt-4"
+      >
+        <div
+          class="space-x-4 justify-center max-w-fit items-center text-center"
+        >
+          <button type="submit" class="custom-button w-full px-8">
+            Submit
+          </button>
+        </div>
       </div>
     </form>
 

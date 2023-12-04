@@ -53,6 +53,20 @@ def get_image():
     data = request.get_json()
     print('data', data)
 
+    # Query DynamoDB for existing image URL
+    response = table.get_item(
+        Key={
+            'name': data['name']
+        }
+    )
+    item = response.get('Item', {})
+
+    # Check if image URL already exists
+    if 'image_url' in item:
+        print("Existing image URL found")
+        return jsonify({"url": item['image_url']})
+    
+    # If image URL does not exist, generate new image   
     promptString = "This is a photo of a Game of Thrones character named " + data['name'] + ". They are a " + data['characterClass'] + " from the house " + data['house'] + ". They have " + data['strength'] + " strength, " + data['intelligence'] + " intelligence, and " + data['charisma'] + " charisma.  Please generate a cool looking photo of them.  overlay the character's name, house and stats.  use house sigil as background."
     
     response = client.images.generate(
