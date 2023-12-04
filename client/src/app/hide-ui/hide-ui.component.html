@@ -1,0 +1,12 @@
+<div
+  *ngIf="!isHidden"
+  class="hideui flex flex-col justify-end items-right text-center cursor-pointer"
+>
+  <p class="text-2xl" (click)="hideHandler()">Hide Overlay</p>
+</div>
+<div
+  *ngIf="isHidden"
+  class="hideui flex flex-col justify-end items-right text-center cursor-pointer"
+>
+  <p class="text-2xl" (click)="hideHandler()">Show Overlay</p>
+</div>

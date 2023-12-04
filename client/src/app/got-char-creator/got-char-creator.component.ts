@@ -1,5 +1,5 @@
 // game-of-thrones-character-creator.component.ts
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { GameOfThronesCharacter } from '../character.model';
 import { OnInit } from '@angular/core';
@@ -19,6 +19,7 @@ import { HttpClient } from '@angular/common/http';
 export class GotCharCreatorComponent implements OnInit {
   selectedHouse: string = '';
   isComponentVisible = false;
+  @Input() hideUi: boolean = false;
   constructor(private fb: FormBuilder, private http: HttpClient) {
     this.character = {
       name: '',
@@ -39,6 +40,7 @@ export class GotCharCreatorComponent implements OnInit {
   character!: GameOfThronesCharacter;
 
   ngOnInit(): void {
+    console.log('this.hideUi in got char creator', this.hideUi);
     this.http.get('http://localhost:5000/get-chars').subscribe((response) => {
       console.log('Server response:', response);
     });

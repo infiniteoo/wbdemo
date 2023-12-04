@@ -1,8 +1,10 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { HousePickerComponent } from '../house-picker/house-picker.component';
 import { GotCharCreatorComponent } from '../got-char-creator/got-char-creator.component';
 import { CharacterListComponent } from '../character-list/character-list.component';
 import { ImageViewerComponent } from '../image-viewer/image-viewer.component';
+import { HideUiComponent } from '../hide-ui/hide-ui.component';
+import { CommonModule } from '@angular/common';
 
 export interface CharacterDetails {
   name: string;
@@ -21,6 +23,8 @@ export interface CharacterDetails {
     GotCharCreatorComponent,
     CharacterListComponent,
     ImageViewerComponent,
+    HideUiComponent,
+    CommonModule,
   ],
   templateUrl: './dashboard.component.html',
   styleUrls: ['./dashboard.component.css'],
@@ -29,6 +33,7 @@ export class DashboardComponent {
   selectedImageUrl?: string;
   isLoading: boolean = false;
   selectedCharacterDetails?: CharacterDetails;
+  @Input() hideUi: boolean = false;
 
   onCharacterSelected(url?: string): void {
     this.isLoading = true;
@@ -42,5 +47,10 @@ export class DashboardComponent {
 
   onCharacterDetailsReceived(details: CharacterDetails): void {
     this.selectedCharacterDetails = details;
+  }
+
+  onHideOverlay(hideUi: boolean): void {
+    this.hideUi = hideUi;
+    console.log('onHideOverlay', hideUi);
   }
 }

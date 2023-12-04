@@ -21,11 +21,15 @@
         autoplay
         playsinline
       ></video>
-      <div class="flex flex-row" style="justify-content: center; display: flex">
+      <div
+        class="flex flex-row"
+        style="justify-content: center; display: flex"
+        *ngIf="!this.hideUi"
+      >
         <div
           class="text-slate-900 text-xl bg-slate-200 border-xl shadow-2xl shadow-black rounded-3xl"
         >
-          <app-got-char-creator></app-got-char-creator>
+          <app-got-char-creator (hideUi)="(hideUi)"></app-got-char-creator>
         </div>
         <div
           class="text-slate-900 text-xl bg-slate-200 border-xl shadow-2xl shadow-black rounded-3xl"
@@ -48,6 +52,7 @@
           ></app-image-viewer>
         </div>
       </div>
+      <app-hide-ui (hideUi)="onHideOverlay($event)"></app-hide-ui>
     </section>
   </body>
 </html>
