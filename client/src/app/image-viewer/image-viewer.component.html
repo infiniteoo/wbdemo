@@ -1,1 +1,9 @@
-<p>image-viewer works!</p>
+// image-viewer.component.ts import { Component, Input } from '@angular/core';
+@Component({ selector: 'app-image-viewer', template: `
+<div *ngIf="isLoading" class="loading-container">
+  <div class="loading-spinner"></div>
+</div>
+<img *ngIf="!isLoading && imageUrl" [src]="imageUrl" alt="Character Image" />
+`, styleUrls: ['./image-viewer.component.css'], standalone: true, }) export
+class ImageViewerComponent { @Input() imageUrl: string; @Input() isLoading:
+boolean; }

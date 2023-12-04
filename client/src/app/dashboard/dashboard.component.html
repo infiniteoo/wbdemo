@@ -35,14 +35,18 @@
           style="margin-left: 20px"
         >
           <app-character-list
-            (characterSelected)="onCharacterSelected($event)"
+            (characterSelected)="onCharacterSelected()"
+            (imageLoaded)="onImageLoaded($event)"
           ></app-character-list>
         </div>
         <div
           class="text-slate-900 text-xl bg-slate-200 border-xl shadow-2xl shadow-black rounded-3xl"
           style="margin-left: 20px; width: 600px"
         >
-          <app-image-viewer [imageUrl]="selectedImageUrl"></app-image-viewer>
+          <app-image-viewer
+            [imageUrl]="selectedImageUrl"
+            [isLoading]="isLoading"
+          ></app-image-viewer>
         </div>
       </div>
     </section>

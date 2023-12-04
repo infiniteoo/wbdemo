@@ -26,7 +26,11 @@ interface ImageResponse {
 })
 export class CharacterListComponent implements OnInit {
   characters: any[] = [];
+  selectedImageUrl?: string;
+  isLoading: boolean = false;
+
   @Output() characterSelected = new EventEmitter<string>(); // Add this line
+  @Output() imageLoaded = new EventEmitter<string>(); // Emitting string (image URL)
 
   constructor(private http: HttpClient) {}
 
@@ -42,16 +46,19 @@ export class CharacterListComponent implements OnInit {
   }
 
   onCharacterClick(character: Character): void {
-    // ... existing logic ...
+    this.characterSelected.emit(); // Emit event when character is clicked
+
     this.http
       .post<ImageResponse>('http://localhost:5000/get-image', character)
       .subscribe({
         next: (response) => {
-          this.characterSelected.emit(response.url); // Emit the image URL
-          // ... other logic ...
+          // Emit the image URL to the parent component
+          this.imageLoaded.emit(response.url);
+          this.isLoading = false;
         },
         error: (error) => {
           console.error('Error sending character stats', error);
+          this.isLoading = false;
         },
       });
   }
