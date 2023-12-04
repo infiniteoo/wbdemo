@@ -4,11 +4,11 @@ import boto3
 from openai import OpenAI
 import os
 from flask import jsonify
-
+import requests
 from dotenv import load_dotenv
+from io import BytesIO
 
 load_dotenv()
-
 
 openAIKey = os.getenv("OPEN_AI")
 openOrg = os.getenv("ORG")
@@ -17,6 +17,9 @@ client = OpenAI(api_key=openAIKey, organization=openOrg)
 
 app = Flask(__name__)
 CORS(app)
+
+s3 = boto3.client('s3')
+bucket_name = "gotcharcreator"
 
 dynamodb = boto3.resource('dynamodb', region_name='us-west-2')
 table = dynamodb.Table('game_of_thrones')
@@ -77,20 +80,26 @@ def get_image():
         n=1,
     ) 
     
-    image_url = response.data[0].url
-    print(image_url)
+    dall_e_image_url = response.data[0].url
+    
+    # Download the image
+    response = requests.get(dall_e_image_url)
+    image = BytesIO(response.content)
 
-    # save image url to dynamodb
+      # Upload to S3
+    s3_image_key = f"game_of_thrones/{data['name']}.png" 
+    s3.upload_fileobj(image, bucket_name, s3_image_key)
+
+    # Construct the S3 URL
+    s3_image_url = f"https://{bucket_name}.s3.amazonaws.com/{s3_image_key}"
+
+    # Save S3 URL to DynamoDB
     table.update_item(
-        Key={
-            'name': data['name']
-        },
+        Key={'name': data['name']},
         UpdateExpression='SET image_url = :val1',
-        ExpressionAttributeValues={
-            ':val1': image_url
-        }
+        ExpressionAttributeValues={':val1': s3_image_url}
     )
-    return jsonify({"url": image_url})
+    return jsonify({"url": s3_image_url})
    
 
 
