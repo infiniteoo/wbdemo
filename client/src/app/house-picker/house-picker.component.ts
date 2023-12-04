@@ -1,5 +1,10 @@
-import { Component } from '@angular/core';
+import { Component, EventEmitter, Output } from '@angular/core';
 import { CommonModule } from '@angular/common';
+
+interface HouseImage {
+  name: string;
+  image: string;
+}
 
 @Component({
   imports: [CommonModule],
@@ -9,19 +14,46 @@ import { CommonModule } from '@angular/common';
   standalone: true,
 })
 export class HousePickerComponent {
-  gotImages: Array<string> = [
-    '../../assets/houses/got1.svg',
-    '../../assets/houses/got2.svg',
-    '../../assets/houses/got3.svg',
-    '../../assets/houses/got4.svg',
-    '../../assets/houses/got5.svg',
-    '../../assets/houses/got6.svg',
-    '../../assets/houses/got7.svg',
-    '../../assets/houses/got8.svg',
+  @Output() houseSelected: EventEmitter<string> = new EventEmitter<string>();
+
+  gotImages: HouseImage[] = [
+    {
+      name: 'House Baratheon',
+      image: '../../assets/houses/got1.svg',
+    },
+    {
+      name: 'House Tyrell',
+      image: '../../assets/houses/got2.svg',
+    },
+    {
+      name: 'House Stark',
+      image: '../../assets/houses/got3.svg',
+    },
+    {
+      name: 'House Lannister',
+      image: '../../assets/houses/got4.svg',
+    },
+    {
+      name: 'House Arryn',
+      image: '../../assets/houses/got5.svg',
+    },
+    {
+      name: 'House Tyrell',
+      image: '../../assets/houses/got6.svg',
+    },
+    {
+      name: 'House Targaryen',
+      image: '../../assets/houses/got7.svg',
+    },
+    {
+      name: 'House Greyjoy',
+      image: '../../assets/houses/got8.svg',
+    },
   ];
 
-  selectHouse(house: string): void {
-    console.log('Selected house:', house);
-    // You can perform additional actions here based on the selected house.
+  selectHouse(house: HouseImage): void {
+    console.log('Selected house:', house.name);
+    // set variable to define what the house selected is
+    this.houseSelected.emit(house.name);
   }
 }

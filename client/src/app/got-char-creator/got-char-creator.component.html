@@ -1,0 +1,84 @@
+<head>
+  <link
+    rel="stylesheet"
+    href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css"
+    integrity="sha384-4LISF5TTJX/fLmGSxO53rV4miRxdg84mZsxmO8Rx5jGtp/LbrixFETvWa5a6sESd"
+    crossorigin="anonymous"
+  />
+</head>
+<div class="text-slate-900 text-2xl rounded-3xl z-50">
+  <div class="mt-8 p-4 rounded-md">
+    <h2 class="text-4xl font-semibold mb-4">
+      Game of Thrones Character Creator
+    </h2>
+
+    <!-- Character Creator Form -->
+    <form [formGroup]="characterForm" class="mb-4">
+      <div class="mb-4">
+        <label for="name" class="text-3xl">Name: </label>
+        <input
+          type="text"
+          id="name"
+          formControlName="name"
+          class="form-input text-3xl"
+        />
+      </div>
+
+      <div class="mb-4">
+        <label for="house" class="text-3xl">House:</label>
+
+        <div class="flex flex-row justify-between">
+          <app-house-picker
+            (houseSelected)="onHouseSelected($event)"
+          ></app-house-picker>
+        </div>
+      </div>
+
+      <div class="mb-4">
+        <label for="characterClass" class="text-3xl">Class: </label>
+
+        <select
+          id="characterClass"
+          formControlName="characterClass"
+          class="form-select text-3xl"
+        >
+          <option
+            *ngFor="let characterClass of classes"
+            [value]="characterClass"
+          >
+            {{ characterClass }}
+          </option>
+        </select>
+      </div>
+
+      <button
+        type="button"
+        (click)="generateRandomStats()"
+        class="bg-blue-500 text-gray-900 cursor-pointer px-4 py-2 rounded-md text-3xl"
+      >
+        Roll Stats
+        <span class="text-7xl">
+          <ng-container *ngIf="character; else placeholder">
+            <i class="bi bi-dice-5 mx-1" style="font-size: 2rem"></i>
+
+            <i class="bi bi-dice-2 mx-1" style="font-size: 2rem"></i>
+          </ng-container>
+          <ng-template #placeholder>
+            <!-- Placeholder content if character is not available -->
+          </ng-template>
+        </span>
+      </button>
+    </form>
+
+    <!-- Display Character Stats -->
+    <div *ngIf="character" class="mb-4">
+      <h3 class="text-xl font-semibold">Generated Character Stats</h3>
+      <p><strong>Name:</strong> {{ character.name }}</p>
+      <p><strong>House:</strong> {{ character.house }}</p>
+      <p><strong>Class:</strong> {{ character.characterClass }}</p>
+      <p><strong>Strength:</strong> {{ character.strength }}</p>
+      <p><strong>Intelligence:</strong> {{ character.intelligence }}</p>
+      <p><strong>Charisma:</strong> {{ character.charisma }}</p>
+    </div>
+  </div>
+</div>

@@ -7,7 +7,6 @@ import { ItemService } from './item.service';
 import { ThreeService } from './three.service';
 import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';
-import { HousePickerComponent } from './house-picker/house-picker.component';
 import { CommonModule } from '@angular/common';
 
 @NgModule({

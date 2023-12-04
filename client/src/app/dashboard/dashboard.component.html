@@ -10,28 +10,10 @@
       .showcase {
         position: relative;
       }
-
-      .box {
-        width: 75%;
-        height: 90%;
-
-        position: absolute;
-        top: 5%;
-        left: 13%;
-        opacity: 0.9;
-
-        display: flex;
-        align-items: center;
-        justify-content: center;
-      }
     </style>
   </head>
   <body>
     <section class="showcase">
-      <header>
-        <div class="toggle"></div>
-      </header>
-
       <video
         src="../../assets/explore.mp4"
         muted
@@ -39,14 +21,11 @@
         autoplay
         playsinline
       ></video>
-      <div class="overlay"></div>
+
       <div
-        class="box text-slate-900 text-xl bg-slate-200 border-xl shadow-2xl shadow-black rounded-3xl"
+        class="text-slate-900 text-xl bg-slate-200 border-xl shadow-2xl shadow-black rounded-3xl"
       >
-        <!-- bottom of box will be house picker -->
-        <div class="flex flex-row justify-between">
-          <app-house-picker></app-house-picker>
-        </div>
+        <app-got-char-creator></app-got-char-creator>
       </div>
     </section>
   </body>

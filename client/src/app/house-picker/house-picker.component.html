@@ -1,9 +1,9 @@
-<div class="house-container">
+<div class="house-container flex flex-row justify-between">
   <div
     *ngFor="let house of gotImages"
     class="house"
     (click)="selectHouse(house)"
   >
-    <img [src]="house" alt="House Image" />
+    <img [src]="house.image" [alt]="house.name" />
   </div>
 </div>
