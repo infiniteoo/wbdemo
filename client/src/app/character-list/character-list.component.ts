@@ -17,6 +17,15 @@ interface ImageResponse {
   url: string;
 }
 
+export interface CharacterDetails {
+  name: string;
+  house: string;
+  characterClass: string;
+  intelligence: BigInteger;
+  charisma: BigInteger;
+  strength: BigInteger;
+}
+
 @Component({
   selector: 'app-character-list',
   templateUrl: './character-list.component.html',
@@ -31,6 +40,7 @@ export class CharacterListComponent implements OnInit {
 
   @Output() characterSelected = new EventEmitter<string>(); // Add this line
   @Output() imageLoaded = new EventEmitter<string>(); // Emitting string (image URL)
+  @Output() characterDetails = new EventEmitter<CharacterDetails>();
 
   constructor(private http: HttpClient) {}
 
@@ -52,9 +62,10 @@ export class CharacterListComponent implements OnInit {
       .post<ImageResponse>('http://localhost:5000/get-image', character)
       .subscribe({
         next: (response) => {
-          // Emit the image URL to the parent component
-          this.imageLoaded.emit(response.url);
+          this.selectedImageUrl = response.url;
           this.isLoading = false;
+          this.imageLoaded.emit(response.url);
+          this.characterDetails.emit(character); // Emit character details
         },
         error: (error) => {
           console.error('Error sending character stats', error);

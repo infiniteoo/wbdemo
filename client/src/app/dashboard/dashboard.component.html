@@ -37,6 +37,7 @@
           <app-character-list
             (characterSelected)="onCharacterSelected()"
             (imageLoaded)="onImageLoaded($event)"
+            (characterDetails)="onCharacterDetailsReceived($event)"
           ></app-character-list>
         </div>
         <div
@@ -46,6 +47,7 @@
           <app-image-viewer
             [imageUrl]="selectedImageUrl"
             [isLoading]="isLoading"
+            [characterDetails]="selectedCharacterDetails"
           ></app-image-viewer>
         </div>
       </div>

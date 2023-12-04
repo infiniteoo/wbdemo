@@ -4,6 +4,15 @@ import { GotCharCreatorComponent } from '../got-char-creator/got-char-creator.co
 import { CharacterListComponent } from '../character-list/character-list.component';
 import { ImageViewerComponent } from '../image-viewer/image-viewer.component';
 
+export interface CharacterDetails {
+  name: string;
+  house: string;
+  characterClass: string;
+  intelligence: BigInteger;
+  charisma: BigInteger;
+  strength: BigInteger;
+}
+
 @Component({
   selector: 'app-dashboard',
   standalone: true,
@@ -19,6 +28,7 @@ import { ImageViewerComponent } from '../image-viewer/image-viewer.component';
 export class DashboardComponent {
   selectedImageUrl?: string;
   isLoading: boolean = false;
+  selectedCharacterDetails?: CharacterDetails;
 
   onCharacterSelected(url?: string): void {
     this.isLoading = true;
@@ -28,5 +38,9 @@ export class DashboardComponent {
   onImageLoaded(url: string): void {
     this.selectedImageUrl = url;
     this.isLoading = false;
+  }
+
+  onCharacterDetailsReceived(details: CharacterDetails): void {
+    this.selectedCharacterDetails = details;
   }
 }

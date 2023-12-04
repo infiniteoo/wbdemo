@@ -1,9 +1,32 @@
-// image-viewer.component.ts import { Component, Input } from '@angular/core';
-@Component({ selector: 'app-image-viewer', template: `
+<!-- image-viewer.component.html -->
+
 <div *ngIf="isLoading" class="loading-container">
   <div class="loading-spinner"></div>
+  <div class="flex flex-col items-center justify-center text=center">
+    <div class="text-4xl text-blue-400 mt-20">Generating Image...</div>
+    <div class="font-2xl text-gray-800 mt-10 text-center">
+      Hang tight! DALL-E powered by Open AI is processing now.
+    </div>
+  </div>
 </div>
-<img *ngIf="!isLoading && imageUrl" [src]="imageUrl" alt="Character Image" />
-`, styleUrls: ['./image-viewer.component.css'], standalone: true, }) export
-class ImageViewerComponent { @Input() imageUrl: string; @Input() isLoading:
-boolean; }
+<div class="flex flex-col flex-1">
+  <img *ngIf="!isLoading && imageUrl" [src]="imageUrl" alt="Character Image" />
+
+  <div *ngIf="!isLoading && characterDetails" class="character-details">
+    <p class="text-4xl text-center items-center justify-center">
+      {{ characterDetails.name }}'s Stats
+    </p>
+    <div class="grid grid-cols-2 gap-4 mt-3">
+      <div class="text-xl text-center items-center justify-center">
+        <p>Name: {{ characterDetails.name }}</p>
+        <p>House: {{ characterDetails.house }}</p>
+        <p>Class: {{ characterDetails.characterClass }}</p>
+      </div>
+      <div class="text-xl text-center items-center justify-center">
+        <p>Intelligence: {{ characterDetails.intelligence }}</p>
+        <p>Charisma: {{ characterDetails.charisma }}</p>
+        <p>Strength: {{ characterDetails.strength }}</p>
+      </div>
+    </div>
+  </div>
+</div>
