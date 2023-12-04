@@ -4,6 +4,10 @@
     class="house"
     (click)="selectHouse(house)"
   >
-    <img [src]="house.image" [alt]="house.name" />
+    <img
+      [src]="house.image"
+      [alt]="house.name"
+      [class.selected]="house.selected"
+    />
   </div>
 </div>

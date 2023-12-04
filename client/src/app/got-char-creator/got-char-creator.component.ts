@@ -46,8 +46,6 @@ export class GotCharCreatorComponent implements OnInit {
     standalone: true,
   });
 
-  houses: string[] = ['House Stark', 'House Lannister', 'House Targaryen'];
-
   classes: string[] = ['Warrior', 'Wizard', 'Rogue'];
 
   generateRandomStats() {
@@ -59,5 +57,12 @@ export class GotCharCreatorComponent implements OnInit {
       intelligence: Math.floor(Math.random() * 20) + 1,
       charisma: Math.floor(Math.random() * 20) + 1,
     } as GameOfThronesCharacter;
+  }
+
+  onSubmit(): void {
+    console.log('Form submitted with character data:', this.character);
+    console.log('Submit button clicked');
+    console.log('Form value:', this.characterForm.value);
+    console.log('Character data:', this.character);
   }
 }

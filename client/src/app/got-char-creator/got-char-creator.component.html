@@ -13,7 +13,7 @@
     </h2>
 
     <!-- Character Creator Form -->
-    <form [formGroup]="characterForm" class="mb-4">
+    <form [formGroup]="characterForm" (ngSubmit)="onSubmit()" class="mb-4">
       <div class="mb-4">
         <label for="name" class="text-3xl">Name: </label>
         <input
@@ -24,10 +24,10 @@
         />
       </div>
 
-      <div class="mb-4">
+      <div class="mb-4 w-fit">
         <label for="house" class="text-3xl">House:</label>
 
-        <div class="flex flex-row justify-between">
+        <div class="">
           <app-house-picker
             (houseSelected)="onHouseSelected($event)"
           ></app-house-picker>
@@ -54,20 +54,26 @@
       <button
         type="button"
         (click)="generateRandomStats()"
-        class="bg-blue-500 text-gray-900 cursor-pointer px-4 py-2 rounded-md text-3xl"
+        class="text-gray-900 cursor-pointer px-4 py-2 rounded-md text-3xl"
       >
         Roll Stats
         <span class="text-7xl">
           <ng-container *ngIf="character; else placeholder">
             <i class="bi bi-dice-5 mx-1" style="font-size: 2rem"></i>
 
-            <i class="bi bi-dice-2 mx-1" style="font-size: 2rem"></i>
+            <i
+              class="bi bi-dice-2"
+              style="font-size: 2rem; margin-left: 5px"
+            ></i>
           </ng-container>
           <ng-template #placeholder>
             <!-- Placeholder content if character is not available -->
           </ng-template>
         </span>
       </button>
+      <div class="flex space-x-4 justify-center max-w-fit">
+        <button type="submit" class="custom-button w-full">Submit</button>
+      </div>
     </form>
 
     <!-- Display Character Stats -->
