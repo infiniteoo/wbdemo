@@ -23,14 +23,16 @@ def create_char():
             'characterClass': data['characterClass'],
             'strength': data['strength'],
             'intelligence': data['intelligence'],
-            'charisma': data['charisma']
-            
-          
-           
+            'charisma': data['charisma']  
         }
     )
     return jsonify(data)
 
+@app.route('/get-chars', methods=['GET'])
+def get_chars():
+    response = table.scan()
+    items = response['Items']
+    return jsonify(items)
 
     
 

@@ -38,7 +38,12 @@ export class GotCharCreatorComponent implements OnInit {
   }
 
   character!: GameOfThronesCharacter;
-  ngOnInit(): void {}
+
+  ngOnInit(): void {
+    this.http.get('http://localhost:5000/get-chars').subscribe((response) => {
+      console.log('Server response:', response);
+    });
+  }
 
   characterForm = this.fb.group({
     name: ['', Validators.required],
