@@ -79,3 +79,8 @@
     </div>
   </div>
 </div>
+
+<div *ngIf="characterChosenForBattle">
+  <app-notification [message]="'Character Selected'" [color]="'gold'">
+  </app-notification>
+</div>

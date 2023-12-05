@@ -6,12 +6,18 @@ import { OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ReactiveFormsModule } from '@angular/forms';
 import { HousePickerComponent } from '../house-picker/house-picker.component';
+import { NotificationComponent } from '../notification/notification.component';
 
 import { HttpClient } from '@angular/common/http';
 
 @Component({
   selector: 'app-got-char-creator',
-  imports: [CommonModule, ReactiveFormsModule, HousePickerComponent],
+  imports: [
+    CommonModule,
+    ReactiveFormsModule,
+    HousePickerComponent,
+    NotificationComponent,
+  ],
   templateUrl: './got-char-creator.component.html',
   styleUrls: ['./got-char-creator.component.css'],
   standalone: true,
@@ -32,6 +38,9 @@ export class GotCharCreatorComponent implements OnInit {
       charisma: 0,
     };
   }
+
+  @Output() message: string = '';
+  @Output() color: string = 'black'; // Default color
 
   onHouseSelected(house: string): void {
     this.character.house = house;

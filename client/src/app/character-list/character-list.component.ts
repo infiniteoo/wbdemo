@@ -1,6 +1,7 @@
 import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { CommonModule } from '@angular/common';
+import { NotificationComponent } from '../notification/notification.component';
 
 interface Character {
   // Define properties of your character, including stats
@@ -31,19 +32,21 @@ export interface CharacterDetails {
   templateUrl: './character-list.component.html',
   styleUrls: ['./character-list.component.css'],
   standalone: true,
-  imports: [CommonModule],
+  imports: [CommonModule, NotificationComponent],
 })
 export class CharacterListComponent implements OnInit {
   characters: Character[] = [];
   selectedImageUrl?: string;
   isLoading: boolean = false;
+  characterChosenForBattle: string = '';
 
   @Output() characterSelected = new EventEmitter<string>();
   @Output() imageLoaded = new EventEmitter<string>(); // Emitting string (image URL)
   @Output() characterDetails = new EventEmitter<CharacterDetails>();
 
   constructor(private http: HttpClient) {}
-
+  @Output() message: string = '';
+  @Output() color: string = 'black'; // Default color
   ngOnInit(): void {
     this.loadCharacters();
   }
@@ -56,7 +59,7 @@ export class CharacterListComponent implements OnInit {
   }
 
   onCharacterClick(character: Character): void {
-    this.characterSelected.emit(); // Emit event when character is clicked
+    this.characterSelected.emit(character.name); // Emit event when character is clicked
 
     this.http
       .post<ImageResponse>('http://localhost:5000/get-image', character)
@@ -74,7 +77,12 @@ export class CharacterListComponent implements OnInit {
       });
   }
 
-  selectCharacter(character: any): void {
+  selectCharacter(character: Character): void {
     console.log('Selected character:', character);
+    this.message = character.name + ' selected';
+    this.color = 'gold'; // Or any logic to determine color
+    // Emit event or handle notification display logic
+    this.characterChosenForBattle = character.name;
+    this.selectCharacter(character);
   }
 }

@@ -7,6 +7,7 @@ import { HideUiComponent } from '../hide-ui/hide-ui.component';
 import { CommonModule } from '@angular/common';
 import { ConfirmationBoxComponent } from '../confirmation-box/confirmation-box.component';
 import { BattlefieldComponent } from '../battlefield/battlefield.component';
+import { NotificationComponent } from '../notification/notification.component';
 
 export interface CharacterDetails {
   name: string;
@@ -29,6 +30,7 @@ export interface CharacterDetails {
     CommonModule,
     ConfirmationBoxComponent,
     BattlefieldComponent,
+    NotificationComponent,
   ],
   templateUrl: './dashboard.component.html',
   styleUrls: ['./dashboard.component.css'],
