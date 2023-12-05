@@ -19,8 +19,10 @@ export class ImageViewerComponent {
   constructor(private http: HttpClient) {}
 
   refreshImage() {
-    this.http.get('http://localhost:5000/regenerate').subscribe((data) => {
-      console.log(data);
-    });
+    this.http
+      .put('http://localhost:5000/regenerate', this.characterDetails)
+      .subscribe((data) => {
+        console.log(data);
+      });
   }
 }
