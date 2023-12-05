@@ -62,3 +62,12 @@ img {
 .edit-button:hover {
     color: #f3f3f3;
 }
+
+.refresh-icon {
+    cursor: pointer;
+    position: relative;
+    top: 5px;
+    left: 5px;
+    color: #fff;
+
+}
