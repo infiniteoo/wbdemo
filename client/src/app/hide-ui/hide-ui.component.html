@@ -1,20 +1,20 @@
-<!-- X Button to hide UI -->
-<div *ngIf="!isHidden" class="x-button-container">
-  <div class="x-button" (click)="hideHandler()">
+<!-- X Button: Show if either UI is open -->
+<div *ngIf="showCharacterCreator || showBattlefield" class="x-button-container">
+  <div class="x-button" (click)="handleClose()">
     <span class="material-icons">X</span>
   </div>
 </div>
 
-<!-- Icons for Select Character and Battlefield, shown when UI is hidden -->
-<div *ngIf="isHidden" class="icons-container">
+<!-- Icons: Show only when both UIs are closed -->
+<div *ngIf="!showCharacterCreator && !showBattlefield" class="icons-container">
   <!-- Select Character Icon -->
-  <div class="icon" (click)="hideHandler()">
+  <div class="icon" (click)="handleCharacterCreatorDisplay()">
     <img src="../../assets/images/shield.svg" alt="Select Character" />
     <p>Select Character</p>
   </div>
 
   <!-- Battlefield Icon -->
-  <div class="icon" (click)="hideBattlefieldHandler()">
+  <div class="icon" (click)="showBattlefieldHandler()">
     <img src="../../assets/images/swords.svg" alt="Battlefield" />
     <p>Battlefield</p>
   </div>

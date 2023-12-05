@@ -22,7 +22,7 @@
         playsinline
       ></video>
       <div
-        *ngIf="!hideBattlefield"
+        *ngIf="this.displayBattlefield"
         class="battlefield-container lex flex-col justify-content items-center text-center h-full w-full"
       >
         <div class="battlefield">
@@ -34,7 +34,7 @@
       <div
         class="flex flex-row"
         style="justify-content: center; display: flex"
-        *ngIf="!this.hideUi"
+        *ngIf="this.displayCharacterCreator"
       >
         <div
           class="text-slate-900 text-xl bg-transparent border-xl shadow-2xl shadow-black rounded-3xl"
@@ -68,9 +68,9 @@
         </div>
       </div>
       <app-hide-ui
-        (hideUi)="onHideOverlay($event)"
+        (hideCharacterCreator)="onHideCharacterCreator($event)"
         [selectedCharacterForBattle]="selectedCharacterForBattle"
-        (hideBattlefield)="onHideBattlefield($event)"
+        (displayBattlefield)="onHideBattlefield($event)"
       ></app-hide-ui>
       <app-confirmation-box
         *ngIf="displayConfirmation"

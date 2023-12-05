@@ -14,25 +14,60 @@ import { CharacterDetails } from '../character-list/character-list.component';
 })
 export class HideUiComponent {
   akarDoubleSword = akarDoubleSword;
-  @Output() hideUi = new EventEmitter<boolean>();
-  @Output() hideBattlefield = new EventEmitter<boolean>();
-  isHidden = false;
-  battlefieldIsHidden = true;
+  @Output() hideCharacterCreator = new EventEmitter<boolean>();
+  @Output() displayBattlefield = new EventEmitter<boolean>();
+  @Input() selectedCharacterForBattle?: CharacterDetails;
+  showCharacterCreator = false;
+  showBattlefield = false;
+
   bootstrapShield = bootstrapShield;
   hideBoth = false;
-  @Input() selectedCharacterForBattle?: CharacterDetails;
 
-  ngOnInit(): void {}
-  hideHandler(): void {
-    this.isHidden = !this.isHidden; // Toggle the visibility
-    this.hideUi.emit(this.isHidden);
-    console.log('hideHandler', this.isHidden);
+  ngOnInit(): void {
+    this.hideCharacterCreator.emit(false);
+    this.displayBattlefield.emit(false);
   }
 
-  hideBattlefieldHandler(): void {
-    this.battlefieldIsHidden = !this.battlefieldIsHidden; // Toggle the battlefield visibility
-    this.hideBoth = !this.hideBoth; // Toggle the visibility of both elements
-    this.hideBattlefield.emit(this.battlefieldIsHidden);
-    console.log('hideBattlefieldHandler', this.battlefieldIsHidden);
+  handleCharacterCreatorDisplay(): void {
+    this.showCharacterCreator = !this.showCharacterCreator;
+    this.hideCharacterCreator.emit(this.showCharacterCreator);
+    console.log(
+      'should cc be displayed (in hide ui) this.showCharacterCreator: ',
+      this.showCharacterCreator
+    );
+    console.log(
+      'should battlefield be displayed (in hide ui) this.showBattlefield: ',
+      this.showBattlefield
+    );
+  }
+
+  handleClose(): void {
+    this.showCharacterCreator = false;
+    this.showBattlefield = false;
+
+    this.hideCharacterCreator.emit(this.showCharacterCreator);
+    this.displayBattlefield.emit(this.showBattlefield);
+
+    console.log(
+      'should cc be displayed (in hide ui): this.showCharacterCreator ',
+      this.showCharacterCreator
+    );
+    console.log(
+      'should battlefield be displayed (in hide ui): this.showBattlefield ',
+      this.showBattlefield
+    );
+  }
+
+  showBattlefieldHandler(): void {
+    this.showBattlefield = !this.showBattlefield;
+    this.displayBattlefield.emit(this.showBattlefield);
+    console.log(
+      'should battlefield be displayed (in hide ui): this.battlfieldIsHidden ',
+      this.showBattlefield
+    );
+    console.log(
+      'should cc be displayed (in hide ui): this.showCharacterCreator ',
+      this.showCharacterCreator
+    );
   }
 }

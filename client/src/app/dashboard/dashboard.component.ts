@@ -39,24 +39,24 @@ export class DashboardComponent {
   selectedImageUrl?: string;
   isLoading: boolean = false;
   selectedCharacterDetails?: CharacterDetails;
-  @Input() hideUi: boolean = false;
+  @Input() displayCharacterCreator: boolean = false;
   @Input() displayConfirmation: boolean = false;
   @Input() selectedCharacterForBattle?: CharacterDetails;
-  @Input() hideBattlefield: boolean = true;
+  @Input() displayBattlefield: boolean = false;
 
   onDisplayConfirmation(displayConfirmation: boolean): void {
     console.log('onDisplayConfirmation', this.displayConfirmation);
     this.displayConfirmation = displayConfirmation;
   }
 
-  onHideBattlefield(hideBattlefield: boolean): void {
-    this.hideBattlefield = hideBattlefield;
-    console.log('onHideBattlefield', this.hideBattlefield);
+  onHideCharacterCreator(displayCharacterCreator: boolean): void {
+    this.displayCharacterCreator = displayCharacterCreator;
+    console.log('should cc be displayed (in db): ', displayCharacterCreator);
   }
 
-  onHideOverlay(hideUi: boolean): void {
-    this.hideUi = hideUi;
-    console.log('onHideOverlay', hideUi);
+  onHideBattlefield(hideBattlefield: boolean): void {
+    this.displayBattlefield = hideBattlefield;
+    console.log('should battlefield be displayed (in db): ', hideBattlefield);
   }
 
   onSelectedCharacterForBattle(
