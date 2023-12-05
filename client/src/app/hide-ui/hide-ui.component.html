@@ -1,38 +1,21 @@
-<div
-  *ngIf="!isHidden"
-  class="hideui flex flex-col justify-end items-right text-center cursor-pointer"
->
-  <div class="text-5xl" (click)="hideHandler()">
-    <span class="material-icons" style="font-size: 3rem; line-height: 1">
-      X
-    </span>
+<!-- X Button to hide UI -->
+<div *ngIf="!isHidden" class="x-button-container">
+  <div class="x-button" (click)="hideHandler()">
+    <span class="material-icons">X</span>
   </div>
 </div>
 
-<div
-  *ngIf="isHidden"
-  class="hideui flex flex-row justify-end items-right text-center cursor-pointer gap-7"
->
-  <div
-    class="text-5xl flex flex-col text-center justify-center items-center"
-    (click)="hideBattlefieldHandler()"
-  >
-    <img
-      src="../../assets/images/swords.svg"
-      class="h-[50px] w-[50px]"
-      style="filter: brightness(0) invert(1)"
-    />
-    <p class="text-2xl mb-12">Start Battle</p>
-    <div
-      class="text-5xl flex flex-col text-center justify-center items-center"
-      (click)="hideHandler()"
-    >
-      <img
-        src="../../assets/images/shield.svg"
-        class="h-[50px] w-[50px]"
-        style="filter: brightness(0) invert(1)"
-      />
-      <p class="text-2xl">Select Character</p>
-    </div>
+<!-- Icons for Select Character and Battlefield, shown when UI is hidden -->
+<div *ngIf="isHidden" class="icons-container">
+  <!-- Select Character Icon -->
+  <div class="icon" (click)="hideHandler()">
+    <img src="../../assets/images/shield.svg" alt="Select Character" />
+    <p>Select Character</p>
+  </div>
+
+  <!-- Battlefield Icon -->
+  <div class="icon" (click)="hideBattlefieldHandler()">
+    <img src="../../assets/images/swords.svg" alt="Battlefield" />
+    <p>Battlefield</p>
   </div>
 </div>

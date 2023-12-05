@@ -21,10 +21,15 @@
         autoplay
         playsinline
       ></video>
-      <div *ngIf="!hideBattlefield" class="absolute top-0 left-0">
-        <app-battlefield
-          [selectedCharacterForBattle]="selectedCharacterForBattle"
-        ></app-battlefield>
+      <div
+        *ngIf="!hideBattlefield"
+        class="battlefield-container lex flex-col justify-content items-center text-center h-full w-full"
+      >
+        <div class="battlefield">
+          <app-battlefield
+            [selectedCharacterForBattle]="selectedCharacterForBattle"
+          ></app-battlefield>
+        </div>
       </div>
       <div
         class="flex flex-row"

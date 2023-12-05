@@ -50,8 +50,8 @@ export class DashboardComponent {
   }
 
   onHideBattlefield(hideBattlefield: boolean): void {
-    console.log('onHideBattlefield', this.hideBattlefield);
     this.hideBattlefield = hideBattlefield;
+    console.log('onHideBattlefield', this.hideBattlefield);
   }
 
   onHideOverlay(hideUi: boolean): void {

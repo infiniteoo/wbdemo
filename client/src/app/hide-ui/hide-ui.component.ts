@@ -19,18 +19,19 @@ export class HideUiComponent {
   isHidden = false;
   battlefieldIsHidden = true;
   bootstrapShield = bootstrapShield;
+  hideBoth = false;
   @Input() selectedCharacterForBattle?: CharacterDetails;
 
   ngOnInit(): void {}
-
   hideHandler(): void {
-    this.isHidden = !this.isHidden;
+    this.isHidden = !this.isHidden; // Toggle the visibility
     this.hideUi.emit(this.isHidden);
     console.log('hideHandler', this.isHidden);
   }
 
   hideBattlefieldHandler(): void {
-    this.battlefieldIsHidden = !this.battlefieldIsHidden;
+    this.battlefieldIsHidden = !this.battlefieldIsHidden; // Toggle the battlefield visibility
+    this.hideBoth = !this.hideBoth; // Toggle the visibility of both elements
     this.hideBattlefield.emit(this.battlefieldIsHidden);
     console.log('hideBattlefieldHandler', this.battlefieldIsHidden);
   }

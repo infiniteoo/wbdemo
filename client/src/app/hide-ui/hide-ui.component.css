@@ -4,3 +4,90 @@
     right: 50px;
     color: white
 }
+
+/* Style for the container of the X button */
+.x-button-container {
+    position: fixed;
+    /* Fixed position to keep it in view */
+    bottom: 20px;
+    /* 20px from the bottom of the viewport */
+    right: 20px;
+    /* 20px from the right of the viewport */
+    z-index: 1000;
+    /* High z-index to ensure it's above other elements */
+}
+
+/* Style for the X button itself */
+.x-button {
+    background-color: #f44336;
+    /* Red background color */
+    color: white;
+    /* White text color */
+    padding: 10px;
+    /* Padding around the X */
+    border-radius: 50%;
+    /* Circular shape */
+    cursor: pointer;
+    /* Cursor changes to pointer on hover */
+    display: flex;
+    /* Flexbox to center the content */
+    justify-content: center;
+    /* Center content horizontally */
+    align-items: center;
+    /* Center content vertically */
+    width: 40px;
+    /* Width of the button */
+    height: 40px;
+    /* Height of the button */
+    font-size: 20px;
+    /* Size of the 'X' character */
+}
+
+/* Style for the container of the icons */
+.icons-container {
+    position: fixed;
+    /* Fixed position */
+    bottom: 80px;
+    /* Position from the bottom */
+    right: 20px;
+    /* Position from the right */
+    z-index: 1000;
+    /* High z-index */
+    display: flex;
+    /* Flexbox to lay out child elements */
+    flex-direction: column;
+    /* Children laid out vertically */
+    gap: 10px;
+    /* Space between child elements */
+}
+
+/* Style for individual icons */
+.icons-container .icon {
+    background-color: #333;
+    /* Dark background for icons */
+    color: white;
+    /* White text color */
+    padding: 10px;
+    /* Padding */
+    border-radius: 8px;
+    /* Rounded corners */
+    cursor: pointer;
+    /* Pointer cursor on hover */
+    text-align: center;
+    /* Center the text */
+    display: flex;
+    /* Flexbox for layout */
+    flex-direction: column;
+    /* Layout items vertically */
+    align-items: center;
+    /* Center items horizontally */
+}
+
+.icons-container .icon img {
+    width: 30px;
+    /* Width of the icon image */
+    height: 30px;
+    /* Height of the icon image */
+    margin-bottom: 5px;
+    /* Space between image and text */
+}
