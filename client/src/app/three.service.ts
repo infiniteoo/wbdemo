@@ -38,8 +38,10 @@ export class ThreeService {
       0.1,
       1000
     );
-    this.camera.position.z = 5;
-    this.camera.position.set(0, 0, 5);
+    this.camera.position.z = 10;
+    this.camera.position.y = 10;
+    this.camera.position.x = 10;
+    this.camera.position.set(0, -3, 70);
     this.camera.lookAt(new THREE.Vector3(0, 0, 0));
     this.camera.near = 0.1;
     this.camera.far = 100;
@@ -54,7 +56,7 @@ export class ThreeService {
     this.gltfLoader.load('../assets/models/wb_shield.glb', (gltf) => {
       console.log(gltf);
       this.logo = gltf.scene;
-      this.logo.scale.set(0.7, 0.7, 0.7);
+      this.logo.scale.set(10, 10, 10);
       this.scene.add(this.logo);
     });
 

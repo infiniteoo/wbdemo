@@ -17,11 +17,16 @@ export class ImageViewerComponent {
   @Input() isLoading?: boolean;
   @Input() characterDetails?: CharacterDetails;
   @Output() displayConfirmation = new EventEmitter<boolean>();
+  @Output() selectedCharacterForBattle = new EventEmitter<CharacterDetails>();
 
   constructor(private http: HttpClient) {}
 
   confirmDelete(): void {
     this.displayConfirmation.emit(true);
+    console.log('test');
+  }
+  confirmSelect(): void {
+    this.selectedCharacterForBattle.emit(this.characterDetails);
     console.log('test');
   }
 }

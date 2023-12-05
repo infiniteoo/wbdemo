@@ -2,15 +2,21 @@
   @import url("https://fonts.googleapis.com/css2?family=Exo+2:wght@300&family=Pixelify+Sans:wght@500&family=Space+Grotesk:wght@300&display=swap");
 </style>
 
-<div class="flex flex-row items-center bg-black w-screen h-screen">
-  <div class="w-full h-full relative">
-    <app-three-viewer></app-three-viewer>
+<div
+  class="flex flex-row items-center bg-black w-screen h-screen justify-center"
+>
+  <div class="w-full h-full relative justify-center items-center">
+    <a class="mt-10">
+      <button class="mt-20">
+        <app-three-viewer></app-three-viewer>
+      </button>
+    </a>
     <div
       class="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2"
     >
       <a routerLink="/dashboard">
         <button
-          class="bg-black text-white px-4 py-2 text-4xl rounded hover:font-bold hover:tracking-[6px]"
+          class="bg-black text-white px-4 py-2 text-4xl rounded enter-button"
           style="margin-top: 300px; letter-spacing: 6px"
         >
           <app-enter-button></app-enter-button>

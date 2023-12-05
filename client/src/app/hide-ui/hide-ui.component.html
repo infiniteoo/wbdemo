@@ -2,11 +2,37 @@
   *ngIf="!isHidden"
   class="hideui flex flex-col justify-end items-right text-center cursor-pointer"
 >
-  <p class="text-2xl" (click)="hideHandler()">Hide Overlay</p>
+  <div class="text-5xl" (click)="hideHandler()">
+    <span class="material-icons" style="font-size: 3rem; line-height: 1">
+      X
+    </span>
+  </div>
 </div>
+
 <div
   *ngIf="isHidden"
-  class="hideui flex flex-col justify-end items-right text-center cursor-pointer"
+  class="hideui flex flex-row justify-end items-right text-center cursor-pointer gap-7"
 >
-  <p class="text-2xl" (click)="hideHandler()">Show Overlay</p>
+  <div
+    class="text-5xl flex flex-col text-center justify-center items-center"
+    (click)="hideBattlefieldHandler()"
+  >
+    <img
+      src="../../assets/images/swords.svg"
+      class="h-[50px] w-[50px]"
+      style="filter: brightness(0) invert(1)"
+    />
+    <p class="text-2xl mb-12">Start Battle</p>
+    <div
+      class="text-5xl flex flex-col text-center justify-center items-center"
+      (click)="hideHandler()"
+    >
+      <img
+        src="../../assets/images/shield.svg"
+        class="h-[50px] w-[50px]"
+        style="filter: brightness(0) invert(1)"
+      />
+      <p class="text-2xl">Select Character</p>
+    </div>
+  </div>
 </div>

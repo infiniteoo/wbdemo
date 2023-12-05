@@ -21,6 +21,11 @@
         autoplay
         playsinline
       ></video>
+      <div *ngIf="!hideBattlefield" class="absolute top-0 left-0">
+        <app-battlefield
+          [selectedCharacterForBattle]="selectedCharacterForBattle"
+        ></app-battlefield>
+      </div>
       <div
         class="flex flex-row"
         style="justify-content: center; display: flex"
@@ -53,10 +58,15 @@
             [isLoading]="isLoading"
             [characterDetails]="selectedCharacterDetails"
             (displayConfirmation)="onDisplayConfirmation($event)"
+            (selectedCharacterForBattle)="onSelectedCharacterForBattle($event)"
           ></app-image-viewer>
         </div>
       </div>
-      <app-hide-ui (hideUi)="onHideOverlay($event)"></app-hide-ui>
+      <app-hide-ui
+        (hideUi)="onHideOverlay($event)"
+        [selectedCharacterForBattle]="selectedCharacterForBattle"
+        (hideBattlefield)="onHideBattlefield($event)"
+      ></app-hide-ui>
       <app-confirmation-box
         *ngIf="displayConfirmation"
         (displayConfirmation)="onDisplayConfirmation($event)"

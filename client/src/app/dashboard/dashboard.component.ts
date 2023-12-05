@@ -6,6 +6,7 @@ import { ImageViewerComponent } from '../image-viewer/image-viewer.component';
 import { HideUiComponent } from '../hide-ui/hide-ui.component';
 import { CommonModule } from '@angular/common';
 import { ConfirmationBoxComponent } from '../confirmation-box/confirmation-box.component';
+import { BattlefieldComponent } from '../battlefield/battlefield.component';
 
 export interface CharacterDetails {
   name: string;
@@ -27,6 +28,7 @@ export interface CharacterDetails {
     HideUiComponent,
     CommonModule,
     ConfirmationBoxComponent,
+    BattlefieldComponent,
   ],
   templateUrl: './dashboard.component.html',
   styleUrls: ['./dashboard.component.css'],
@@ -39,15 +41,34 @@ export class DashboardComponent {
   selectedCharacterDetails?: CharacterDetails;
   @Input() hideUi: boolean = false;
   @Input() displayConfirmation: boolean = false;
+  @Input() selectedCharacterForBattle?: CharacterDetails;
+  @Input() hideBattlefield: boolean = true;
 
   onDisplayConfirmation(displayConfirmation: boolean): void {
     console.log('onDisplayConfirmation', this.displayConfirmation);
     this.displayConfirmation = displayConfirmation;
   }
 
+  onHideBattlefield(hideBattlefield: boolean): void {
+    console.log('onHideBattlefield', this.hideBattlefield);
+    this.hideBattlefield = hideBattlefield;
+  }
+
+  onHideOverlay(hideUi: boolean): void {
+    this.hideUi = hideUi;
+    console.log('onHideOverlay', hideUi);
+  }
+
+  onSelectedCharacterForBattle(
+    selectedCharacterForBattle: CharacterDetails
+  ): void {
+    console.log('onSelectedCharacterForBattle', selectedCharacterForBattle);
+    this.selectedCharacterForBattle = selectedCharacterForBattle;
+  }
+
   onCharacterSelected(url?: string): void {
     this.isLoading = true;
-    this.selectedImageUrl = url; // Use the URL if needed
+    this.selectedImageUrl = url;
   }
   onNewCharacterCreated(): void {
     this.updateCharacterList();
@@ -64,11 +85,6 @@ export class DashboardComponent {
 
   onCharacterDetailsReceived(details: CharacterDetails): void {
     this.selectedCharacterDetails = details;
-  }
-
-  onHideOverlay(hideUi: boolean): void {
-    this.hideUi = hideUi;
-    console.log('onHideOverlay', hideUi);
   }
 
   updateCharacterList(): void {

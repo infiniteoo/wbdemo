@@ -5,7 +5,8 @@ import { ThreeService } from '../three.service';
 
 @Component({
   selector: 'app-three-viewer',
-  template: '<div #rendererContainer></div>',
+  template:
+    '<div #rendererContainer class="flex justify-center items-center"></div>',
   styleUrls: ['./three-viewer.component.css'],
 })
 export class ThreeViewerComponent implements OnInit {
