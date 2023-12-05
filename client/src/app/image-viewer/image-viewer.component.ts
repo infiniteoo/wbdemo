@@ -1,8 +1,9 @@
 // image-viewer.component.ts
 import { CommonModule } from '@angular/common';
-import { Component, Input } from '@angular/core';
+import { Component, Input, Output } from '@angular/core';
 import { CharacterDetails } from '../character-list/character-list.component';
 import { HttpClient } from '@angular/common/http';
+import { EventEmitter } from '@angular/core';
 
 @Component({
   selector: 'app-image-viewer',
@@ -15,14 +16,12 @@ export class ImageViewerComponent {
   @Input() imageUrl?: string;
   @Input() isLoading?: boolean;
   @Input() characterDetails?: CharacterDetails;
+  @Output() displayConfirmation = new EventEmitter<boolean>();
 
   constructor(private http: HttpClient) {}
 
-  refreshImage() {
-    this.http
-      .put('http://localhost:5000/regenerate', this.characterDetails)
-      .subscribe((data) => {
-        console.log(data);
-      });
+  confirmDelete(): void {
+    this.displayConfirmation.emit(true);
+    console.log('test');
   }
 }

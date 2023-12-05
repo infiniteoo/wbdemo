@@ -5,6 +5,7 @@ import { CharacterListComponent } from '../character-list/character-list.compone
 import { ImageViewerComponent } from '../image-viewer/image-viewer.component';
 import { HideUiComponent } from '../hide-ui/hide-ui.component';
 import { CommonModule } from '@angular/common';
+import { ConfirmationBoxComponent } from '../confirmation-box/confirmation-box.component';
 
 export interface CharacterDetails {
   name: string;
@@ -25,6 +26,7 @@ export interface CharacterDetails {
     ImageViewerComponent,
     HideUiComponent,
     CommonModule,
+    ConfirmationBoxComponent,
   ],
   templateUrl: './dashboard.component.html',
   styleUrls: ['./dashboard.component.css'],
@@ -36,12 +38,22 @@ export class DashboardComponent {
   isLoading: boolean = false;
   selectedCharacterDetails?: CharacterDetails;
   @Input() hideUi: boolean = false;
+  @Input() displayConfirmation: boolean = false;
+
+  onDisplayConfirmation(displayConfirmation: boolean): void {
+    console.log('onDisplayConfirmation', this.displayConfirmation);
+    this.displayConfirmation = displayConfirmation;
+  }
 
   onCharacterSelected(url?: string): void {
     this.isLoading = true;
     this.selectedImageUrl = url; // Use the URL if needed
   }
   onNewCharacterCreated(): void {
+    this.updateCharacterList();
+  }
+
+  onCharacterDeleted(): void {
     this.updateCharacterList();
   }
 

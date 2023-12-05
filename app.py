@@ -27,6 +27,20 @@ table = dynamodb.Table('game_of_thrones')
 print(table.creation_date_time)
 print(table.item_count)
 
+@app.route('/deletechar/<character>', methods=['DELETE'])
+def delete_char(character):
+    print('character', character)
+    response = table.delete_item(
+        Key={
+            'name': character
+        }
+    )
+    return jsonify(response)
+    
+   
+ 
+   
+
 @app.route('/create-char', methods=['POST'])
 def create_char():
     data = request.get_json()

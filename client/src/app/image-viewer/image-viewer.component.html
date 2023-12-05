@@ -46,13 +46,7 @@
       alt="Character Image"
       class="rounded-3xl h-full w-full object-cover"
     />
-    <i
-    *ngIf="!isLoading && imageUrl"
-    class="bi bi-arrow-clockwise refresh-icon hover:text-blue-500 absolute bottom-0 right-0 pb-2"
-    style="font-size: 2.5rem; cursor: pointer; z-index: 10;"
-    alt="Regenerate Avatar"
-    (click)="refreshImage()"
-  ></i>
+    
     <div
       *ngIf="!isLoading && characterDetails"
       class="character-details text-shadow flex-1 mb-2 min-h-full h-full"
@@ -73,9 +67,9 @@
           <p>Strength: {{ characterDetails.strength }}</p>
         </div>
       </div>
-      <div class="flex flex-row items-center justify-center text-slate-200 text-2xl" style="font-family: 'GameOfThrones', sans-serif">
+      <div class="flex flex-row items-center mt-3 justify-center text-slate-300 text-2xl" style="font-family: 'GameOfThrones', sans-serif">
         <div class="delete-button">
-          <button class=>delete</button>
+          <button class="delete-button" (click)="confirmDelete()">delete</button>
         </div>
         <div class="edit-button">
           <button class=>edit</button>

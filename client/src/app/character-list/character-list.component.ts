@@ -38,7 +38,7 @@ export class CharacterListComponent implements OnInit {
   selectedImageUrl?: string;
   isLoading: boolean = false;
 
-  @Output() characterSelected = new EventEmitter<string>(); // Add this line
+  @Output() characterSelected = new EventEmitter<string>();
   @Output() imageLoaded = new EventEmitter<string>(); // Emitting string (image URL)
   @Output() characterDetails = new EventEmitter<CharacterDetails>();
 

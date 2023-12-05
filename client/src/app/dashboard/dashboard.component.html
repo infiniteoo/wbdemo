@@ -52,10 +52,17 @@
             [imageUrl]="selectedImageUrl"
             [isLoading]="isLoading"
             [characterDetails]="selectedCharacterDetails"
+            (displayConfirmation)="onDisplayConfirmation($event)"
           ></app-image-viewer>
         </div>
       </div>
       <app-hide-ui (hideUi)="onHideOverlay($event)"></app-hide-ui>
+      <app-confirmation-box
+        *ngIf="displayConfirmation"
+        (displayConfirmation)="onDisplayConfirmation($event)"
+        [selectedCharacterDetails]="selectedCharacterDetails"
+        (characterDeleted)="onCharacterDeleted()"
+      ></app-confirmation-box>
     </section>
   </body>
 </html>

@@ -19,6 +19,7 @@ import { HttpClient } from '@angular/common/http';
 export class GotCharCreatorComponent implements OnInit {
   @Output() characterCreated = new EventEmitter<void>();
   selectedHouse: string = '';
+
   isComponentVisible = false;
   @Input() hideUi: boolean = false;
   constructor(private fb: FormBuilder, private http: HttpClient) {
