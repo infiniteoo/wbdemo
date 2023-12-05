@@ -37,7 +37,7 @@ export interface CharacterDetails {
 })
 export class DashboardComponent {
   @ViewChild(CharacterListComponent) characterList!: CharacterListComponent;
-
+  selectedCharactersForBattle: CharacterDetails[] = [];
   selectedImageUrl?: string;
   isLoading: boolean = false;
   selectedCharacterDetails?: CharacterDetails;
@@ -64,6 +64,9 @@ export class DashboardComponent {
   onSelectedCharacterForBattle(
     selectedCharacterForBattle: CharacterDetails
   ): void {
+    console.log('onSelectedCharacterForBattle', selectedCharacterForBattle);
+    this.selectedCharactersForBattle.push(selectedCharacterForBattle);
+
     console.log('onSelectedCharacterForBattle', selectedCharacterForBattle);
     this.selectedCharacterForBattle = selectedCharacterForBattle;
   }
