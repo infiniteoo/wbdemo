@@ -91,3 +91,10 @@
     margin-bottom: 5px;
     /* Space between image and text */
 }
+
+.greyed-out {
+    opacity: 0.5;
+    /* Adjust opacity to grey out */
+    pointer-events: none;
+    /* Disable click events */
+}

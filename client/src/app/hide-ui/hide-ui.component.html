@@ -14,7 +14,11 @@
   </div>
 
   <!-- Battlefield Icon -->
-  <div class="icon" (click)="showBattlefieldHandler()">
+  <div
+    class="icon"
+    [class.greyed-out]="!selectedCharacterForBattle"
+    (click)="selectedCharacterForBattle ? showBattlefieldHandler() : null"
+  >
     <img src="../../assets/images/swords.svg" alt="Battlefield" />
     <p>Battlefield</p>
   </div>
