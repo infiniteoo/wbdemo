@@ -1,13 +1,16 @@
-<div class="house-container flex flex-row justify-between">
+<div class="house-container flex flex-wrap justify-center">
   <div
     *ngFor="let house of gotImages"
     class="house"
     (click)="selectHouse(house)"
   >
-    <img
-      [src]="house.image"
-      [alt]="house.name"
-      [class.selected]="house.selected"
-    />
+    <div class="image-container">
+      <img
+        [src]="house.image"
+        [alt]="house.name"
+        [class.selected]="house.selected"
+      />
+      <div class="overlay text-shadow">{{ house.name }}</div>
+    </div>
   </div>
 </div>

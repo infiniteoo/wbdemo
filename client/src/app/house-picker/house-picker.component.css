@@ -6,16 +6,51 @@
     margin: 5px;
     cursor: pointer;
     padding: 10px;
+    transition: transform 0.3s ease;
 }
 
 .house img {
-    width: 50px;
-    height: 50px;
-
-
+    width: 85px;
+    height: 85px;
 }
 
 .house img.selected {
     border: 4px solid darkred;
     padding: 1px;
+}
+
+.house .image-container {
+    position: relative;
+    display: inline-block;
+}
+
+.house img {
+    display: block;
+    width: 100%;
+}
+
+.house .overlay {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    color: white;
+    font-size: 15px;
+    color: white;
+    text-shadow:
+        -1px -1px 0 #000,
+        1px -1px 0 #000,
+        -1px 1px 0 #000,
+        1px 1px 0 #000;
+
+    background-color: rgba(0, 0, 0, 0.6);
+    /* Black background with 60% opacity */
+    padding: 2px 5px;
+    border-radius: 5px;
+
+}
+
+.house:hover {
+    transform: scale(1.1);
+    /* Scales up the size to 110% when hovered */
 }

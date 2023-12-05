@@ -27,14 +27,14 @@
         *ngIf="!this.hideUi"
       >
         <div
-          class="text-slate-900 text-xl bg-slate-200 border-xl shadow-2xl shadow-black rounded-3xl"
+          class="text-slate-900 text-xl bg-transparent border-xl shadow-2xl shadow-black rounded-3xl"
         >
           <app-got-char-creator
             (characterCreated)="onNewCharacterCreated()"
           ></app-got-char-creator>
         </div>
         <div
-          class="text-slate-900 text-xl bg-slate-200 border-xl shadow-2xl shadow-black rounded-3xl"
+          class="text-slate-900 text-xl bg-transparent border-xl shadow-2xl shadow-black rounded-3xl"
           style="margin-left: 20px"
         >
           <app-character-list
@@ -45,7 +45,7 @@
           ></app-character-list>
         </div>
         <div
-          class="text-slate-900 text-xl bg-slate-200 border-xl shadow-2xl shadow-black rounded-3xl"
+          class="text-slate-900 text-xl bg-transparent border-xl rounded-3xl"
           style="margin-left: 20px; width: 600px"
         >
           <app-image-viewer

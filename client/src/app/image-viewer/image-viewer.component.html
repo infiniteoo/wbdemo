@@ -38,7 +38,7 @@
 </div>
 
 <div class="flex flex-col flex-1 parchment-background rounded-3xl h-fit w-fit max-h-full">
-  <div class="min-h-full">
+  <div class="min-h-full ">
  
     <img
       *ngIf="!isLoading && imageUrl"
@@ -49,14 +49,14 @@
     
     <div
       *ngIf="!isLoading && characterDetails"
-      class="character-details text-shadow flex-1 mb-2 min-h-full h-full"
+      class="character-details text-shadow flex-1 mb-2 min-h-full h-fit"
     >
    
       <p class="text-4xl text-center items-center justify-center">
         {{ characterDetails.name }}'s Stats
       </p>
       <div class="grid grid-cols-2 gap-4 mt-3 h-full relative">
-        <div class="text-2xl text-center items-center justify-center">
+        <div class="text-2xl text-center items-center justify-center flex-1">
           <p>Name: {{ characterDetails.name }}</p>
           <p>House: {{ characterDetails.house }}</p>
           <p>Class: {{ characterDetails.characterClass }}</p>
