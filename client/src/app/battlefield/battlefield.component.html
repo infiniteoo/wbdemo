@@ -10,12 +10,16 @@
     </h2>
   </div>
 
-  <div class="flex-row justify-center items-center px-6">
+  <div
+    class="flex-row justify-center items-center px-6"
+    *ngIf="!characterChosenForBattle"
+  >
     <!-- Opponent Characters -->
     <div
       *ngFor="let opponent of opponents; let i = index"
       class="card p-3"
-      [class.active]="currentDisplayIndex === i"
+      [class.active]="currentDisplayIndex === i && !fadeOthers"
+      [class.fade]="fadeOthers && chosenOpponent !== opponent"
     >
       <img
         [src]="opponent.image_url"
@@ -23,14 +27,34 @@
         class="rounded-3xl"
       />
     </div>
+  </div>
 
-    <!-- <div *ngIf="chosenOpponent" class="card">
-      <img [src]="chosenFighter.image_url" alt="Your Character" />
-    </div> -->
+  <div *ngIf="characterChosenForBattle" class="positioned-characters mt-20">
+    <!-- My Character -->
+    <div class="character-card">
+      <img
+        [src]="this.chosenFighter.image_url"
+        alt="Your Character"
+        class="character-image"
+      />
+      <div class="character-stats">stats</div>
+      <button class="action-btn">action</button>
+    </div>
+
+    <!-- Chosen Opponent -->
+    <div class="character-card">
+      <img
+        [src]="chosenOpponent.image_url"
+        alt="{{ chosenOpponent.name }}"
+        class="character-image"
+      />
+      <div class="character-stats">stats</div>
+      <button class="action-btn">action</button>
+    </div>
   </div>
 </div>
 
-<div *ngIf="characterChosenForBattle">
+<div *ngIf="characterChosenForBattle == true">
   <app-notification [message]="chosenOpponent.name" [color]="'gold'">
   </app-notification>
 </div>

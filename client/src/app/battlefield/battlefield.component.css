@@ -1,7 +1,6 @@
 .flex-row {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
-    /* Adjust grid layout */
     gap: 10px;
     justify-content: center;
     align-items: center;
@@ -10,7 +9,11 @@
 .card {
     transition: transform 0.5s ease, filter 0.5s ease;
     filter: grayscale(100%) opacity(0.6);
-
+    max-width: 100%;
+    max-height: 100vh;
+    overflow: hidden;
+    position: relative;
+    z-index: 1;
 }
 
 .card img {
@@ -21,6 +24,98 @@
 
 .card.active {
     transform: scale(1.1);
-    /* Adjust scaling factor */
     filter: grayscale(0%) opacity(1);
+    z-index: 2;
+}
+
+.card.fade {
+    opacity: 0;
+    transform: scale(0.5);
+    transition: opacity 0.5s ease, transform 0.5s ease;
+    z-index: 0;
+    display: none;
+
+}
+
+
+.positioned-characters {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    height: 50%;
+    width: auto;
+    align-items: center;
+    margin-top: 20px;
+}
+
+.your-character,
+.chosen-opponent {
+    transition: transform 0.5s ease;
+    transform: scale(1.2);
+}
+
+.chosen-opponent {
+    transform: scale(1);
+    filter: none;
+    z-index: 3;
+}
+
+.card.fade {
+    opacity: 0;
+    transform: scale(0.5);
+    transition: opacity 0.5s, transform 0.5s;
+    z-index: 0;
+    position: absolute;
+}
+
+.positioned-characters {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    padding: 1rem;
+    gap: 1rem;
+    margin-top: 1rem;
+
+}
+
+.character-card {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 400px;
+    height: 500px;
+    background: rgba(255, 255, 255, 0.8);
+    border-radius: 10px;
+    padding: 1rem;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+
+}
+
+.character-image {
+    width: 100%;
+    height: auto;
+    object-fit: cover;
+    border-radius: 10px;
+    margin-bottom: 1rem;
+}
+
+.character-stats {
+    text-align: center;
+    margin-bottom: 1rem;
+
+}
+
+.action-btn {
+    margin-top: auto;
+    padding: 0.5rem 1rem;
+    border: none;
+    border-radius: 5px;
+    background-color: #4CAF50;
+    color: white;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.action-btn:hover {
+    background-color: #45a049;
 }

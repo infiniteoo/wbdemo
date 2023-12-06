@@ -33,6 +33,7 @@ export class BattlefieldComponent {
   chosenFighter: Character = {} as Character;
   constructor(private http: HttpClient) {}
   opponents: Character[] = [];
+  fadeOthers: boolean = false;
 
   ngOnInit(): void {
     this.http.get('http://localhost:5000/get-chars').subscribe((response) => {
@@ -45,6 +46,8 @@ export class BattlefieldComponent {
       } else {
         this.opponents = allCharacters;
       }
+
+      this.chosenFighter = this.selectedCharacterForBattle as Character;
 
       this.startOpponentSelection(3000);
     });
@@ -66,7 +69,22 @@ export class BattlefieldComponent {
   chooseRandomOpponent(): void {
     const randomIndex = Math.floor(Math.random() * this.opponents.length);
     this.chosenOpponent = this.opponents[randomIndex];
-    this.currentDisplayIndex = randomIndex;
+
+    this.fadeOthers = true;
+    this.currentDisplayIndex = -1; // Reset the index to ensure no card has 'active' class
     this.characterChosenForBattle = true;
+    this.currentDisplayIndex = this.opponents.indexOf(this.chosenOpponent);
+    // Delay to allow fade effect
+    setTimeout(() => {
+      this.fadeOthers = false; // Reset the fade effect
+      // Highlight the chosen opponent
+
+      this.positionCharacters();
+    }, 1000); // Adjust timing as needed
+  }
+
+  positionCharacters(): void {
+    // Logic to position characters
+    // You can use this method to adjust the layout, show/hide elements, etc.
   }
 }
