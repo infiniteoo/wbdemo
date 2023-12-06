@@ -1,0 +1,26 @@
+.flex-row {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+    /* Adjust grid layout */
+    gap: 10px;
+    justify-content: center;
+    align-items: center;
+}
+
+.card {
+    transition: transform 0.5s ease, filter 0.5s ease;
+    filter: grayscale(100%) opacity(0.6);
+
+}
+
+.card img {
+    width: 100%;
+    height: auto;
+    display: block;
+}
+
+.card.active {
+    transform: scale(1.1);
+    /* Adjust scaling factor */
+    filter: grayscale(0%) opacity(1);
+}

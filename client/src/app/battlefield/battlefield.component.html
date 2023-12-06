@@ -1,7 +1,7 @@
 <div
-  class="text-slate-900 text-2xl rounded-3xl z-50 parchment-background text-shadow justify-center items-center text-center h-full w-full"
+  class="battlefield-container text-slate-900 text-2xl rounded-3xl z-50 parchment-background text-shadow h-full w-full"
 >
-  <div class="p-4 rounded-md">
+  <div class="mt-6" style="padding: 5px; margin-top: 0.5rem">
     <h2
       class="text-4xl font-semibold mb-4 text-center"
       style="font-family: 'GameOfThrones', sans-serif"
@@ -9,4 +9,28 @@
       BATTLEFIELD
     </h2>
   </div>
+
+  <div class="flex-row justify-center items-center px-6">
+    <!-- Opponent Characters -->
+    <div
+      *ngFor="let opponent of opponents; let i = index"
+      class="card p-3"
+      [class.active]="currentDisplayIndex === i"
+    >
+      <img
+        [src]="opponent.image_url"
+        alt="{{ opponent.name }}"
+        class="rounded-3xl"
+      />
+    </div>
+
+    <!-- <div *ngIf="chosenOpponent" class="card">
+      <img [src]="chosenFighter.image_url" alt="Your Character" />
+    </div> -->
+  </div>
+</div>
+
+<div *ngIf="characterChosenForBattle">
+  <app-notification [message]="chosenOpponent.name" [color]="'gold'">
+  </app-notification>
 </div>
