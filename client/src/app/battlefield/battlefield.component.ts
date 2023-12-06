@@ -36,6 +36,9 @@ export class BattlefieldComponent {
   myHitPoints: number = 100;
   opponentHitPoints: number = 100;
   fadeOthers: boolean = false;
+  notificationMessage: string = '';
+  showNotification: boolean = false;
+  notificationColor: string = 'gold'; // Default color, change as needed
 
   ngOnInit(): void {
     this.http.get('http://localhost:5000/get-chars').subscribe((response) => {
@@ -70,17 +73,19 @@ export class BattlefieldComponent {
   attackOpponent(): void {
     const damage = this.calculateDamage();
     this.opponentHitPoints = Math.max(this.opponentHitPoints - damage, 0);
-    this.checkGameOver();
+    this.displayNotification(`You dealt ${damage} damage!`, 'green');
 
     // Opponent's turn to respond
     setTimeout(() => {
       this.opponentAttack();
-    }, 1000); // Delay for the opponent's response
+    }, 3000);
   }
 
   opponentAttack(): void {
     const damage = this.calculateDamage();
+    console.log(`Opponent attacking with ${damage} damage`); // Debug log
     this.myHitPoints = Math.max(this.myHitPoints - damage, 0);
+    this.displayNotification(`Opponent dealt ${damage} damage!`, 'red');
     this.checkGameOver();
   }
 
@@ -90,18 +95,28 @@ export class BattlefieldComponent {
 
   checkGameOver(): void {
     if (this.myHitPoints <= 0) {
-      alert('Game Over! You lost.');
+      this.displayNotification(`game over.  you lose`, 'red');
       // Handle game over logic
     } else if (this.opponentHitPoints <= 0) {
-      alert('Congratulations! You won!');
+      this.displayNotification(`congrats You Win`, 'gold');
       // Handle victory logic
     }
+  }
+  displayNotification(message: string, color: string = 'gold'): void {
+    this.notificationMessage = message;
+    this.notificationColor = color;
+    this.showNotification = true;
+
+    // Optionally, hide the notification after a delay
+    setTimeout(() => {
+      this.showNotification = false;
+    }, 5000); // Adjust time as needed
   }
 
   chooseRandomOpponent(): void {
     const randomIndex = Math.floor(Math.random() * this.opponents.length);
     this.chosenOpponent = this.opponents[randomIndex];
-
+    this.displayNotification(`${this.chosenOpponent.name}`, 'gold');
     this.fadeOthers = true;
     this.currentDisplayIndex = -1; // Reset the index to ensure no card has 'active' class
     this.characterChosenForBattle = true;
@@ -112,7 +127,7 @@ export class BattlefieldComponent {
       // Highlight the chosen opponent
 
       this.positionCharacters();
-    }, 1000); // Adjust timing as needed
+    }, 5000); // Adjust timing as needed
   }
 
   positionCharacters(): void {
