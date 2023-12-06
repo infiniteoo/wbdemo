@@ -3,7 +3,7 @@
 >
   <div class="mt-6" style="padding: 5px; margin-top: 0.5rem">
     <h2
-      class="text-4xl font-semibold mb-4 text-center"
+      class="text-5xl font-semibold mb-4 text-center"
       style="font-family: 'GameOfThrones', sans-serif"
     >
       BATTLEFIELD
@@ -11,7 +11,7 @@
   </div>
 
   <div
-    class="flex-row justify-center items-center px-6"
+    class="flex flex-row justify-center items-center"
     *ngIf="!characterChosenForBattle"
   >
     <!-- Opponent Characters -->
@@ -29,16 +29,17 @@
     </div>
   </div>
 
-  <div *ngIf="characterChosenForBattle" class="positioned-characters mt-20">
+  <div *ngIf="characterChosenForBattle" class="positioned-characters">
     <!-- My Character -->
+
     <div class="character-card">
       <img
         [src]="this.chosenFighter.image_url"
         alt="Your Character"
         class="character-image"
       />
-      <div class="character-stats">stats</div>
-      <button class="action-btn">action</button>
+      <div class="character-stats">HP: 100/100</div>
+      <button class="action-btn">Attack</button>
     </div>
 
     <!-- Chosen Opponent -->
@@ -48,13 +49,12 @@
         alt="{{ chosenOpponent.name }}"
         class="character-image"
       />
-      <div class="character-stats">stats</div>
-      <button class="action-btn">action</button>
+      <div class="character-stats">HP: 100/100</div>
     </div>
   </div>
-</div>
 
-<div *ngIf="characterChosenForBattle == true">
-  <app-notification [message]="chosenOpponent.name" [color]="'gold'">
-  </app-notification>
+  <div *ngIf="characterChosenForBattle == true">
+    <app-notification [message]="chosenOpponent.name" [color]="'gold'">
+    </app-notification>
+  </div>
 </div>
