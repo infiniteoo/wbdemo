@@ -33,6 +33,8 @@ export class BattlefieldComponent {
   chosenFighter: Character = {} as Character;
   constructor(private http: HttpClient) {}
   opponents: Character[] = [];
+  myHitPoints: number = 100;
+  opponentHitPoints: number = 100;
   fadeOthers: boolean = false;
 
   ngOnInit(): void {
@@ -64,6 +66,36 @@ export class BattlefieldComponent {
       clearInterval(intervalId); // Stop the cycling
       this.chooseRandomOpponent();
     }, timeLimit);
+  }
+  attackOpponent(): void {
+    const damage = this.calculateDamage();
+    this.opponentHitPoints = Math.max(this.opponentHitPoints - damage, 0);
+    this.checkGameOver();
+
+    // Opponent's turn to respond
+    setTimeout(() => {
+      this.opponentAttack();
+    }, 1000); // Delay for the opponent's response
+  }
+
+  opponentAttack(): void {
+    const damage = this.calculateDamage();
+    this.myHitPoints = Math.max(this.myHitPoints - damage, 0);
+    this.checkGameOver();
+  }
+
+  calculateDamage(): number {
+    return Math.floor(Math.random() * 20) + 1; // Random damage between 1 and 20
+  }
+
+  checkGameOver(): void {
+    if (this.myHitPoints <= 0) {
+      alert('Game Over! You lost.');
+      // Handle game over logic
+    } else if (this.opponentHitPoints <= 0) {
+      alert('Congratulations! You won!');
+      // Handle victory logic
+    }
   }
 
   chooseRandomOpponent(): void {

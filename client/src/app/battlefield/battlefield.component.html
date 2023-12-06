@@ -31,15 +31,14 @@
 
   <div *ngIf="characterChosenForBattle" class="positioned-characters">
     <!-- My Character -->
-
     <div class="character-card">
       <img
         [src]="this.chosenFighter.image_url"
         alt="Your Character"
         class="character-image"
       />
-      <div class="character-stats">HP: 100/100</div>
-      <button class="action-btn">Attack</button>
+      <div class="character-stats">HP: {{ myHitPoints }}/100</div>
+      <button class="action-btn" (click)="attackOpponent()">Attack</button>
     </div>
 
     <!-- Chosen Opponent -->
@@ -49,7 +48,7 @@
         alt="{{ chosenOpponent.name }}"
         class="character-image"
       />
-      <div class="character-stats">HP: 100/100</div>
+      <div class="character-stats">HP: {{ opponentHitPoints }}/100</div>
     </div>
   </div>
 
